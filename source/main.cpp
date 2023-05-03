@@ -1,4 +1,5 @@
 #include <core/application.h>
+#include <core/components/sprite.h>
 
 class Emulator : public IScene
 {
@@ -76,12 +77,15 @@ private:
         }
     };
 
+    Sprite *pointer;
+
     int registerA;
 
     Array<Code> program;
     unsigned int programCounter;
 
     Array<int> memory;
+    Array<Sprite*> screen;
 
     void Interpret(Code code);
     void Display();
@@ -122,6 +126,12 @@ void Emulator::Init()
     program.Add(Code(LDA, Hex("08")));
     program.Add(Code(STA, Hex("0202")));
 
+    pointer = new Sprite("data/cursor.png");
+    components.Add(pointer);
+
+    screen.Add(new Sprite(255,0,0,100,100));
+    components.Add(screen[0]);
+
     // Clear memory
     for (int i = 0; i < memory.Size(); i++)
     {
@@ -145,9 +155,12 @@ void Emulator::Display()
     {
         if (memory[i] != 0)
         {
-            Log(memory[i]);
+            //Log(memory[i]);
         }
     }
+
+    pointer->x = input.Mouse.x;
+    pointer->y = input.Mouse.y;
 }
 
 void Emulator::UpdateAfterPhysics()
