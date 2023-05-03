@@ -133,7 +133,7 @@ void Emulator::Init()
     components.Add(screen[0]);
 
     // Clear memory
-    for (int i = 0; i < memory.Size(); i++)
+    for (unsigned int i = 0; i < memory.Size(); i++)
     {
         memory[i] = 0; 
     }
