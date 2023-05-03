@@ -10,6 +10,11 @@ public:
     void Update();
     void UpdateAfterPhysics();
 
+    inline int Hex(const char *hexstring)
+    {
+        return (int)strtol(hexstring, NULL, 16);
+    }
+
 private:
     enum INSTRUCTIONS
     {
@@ -70,11 +75,6 @@ private:
             }
         }
     };
-
-    inline int Hex(const char *hexstring)
-    {
-        return (int)strtol(hexstring, NULL, 16);
-    }
 
     int registerA;
 
