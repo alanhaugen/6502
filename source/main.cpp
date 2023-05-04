@@ -20,7 +20,11 @@ private:
     enum INSTRUCTIONS
     {
         LDA, // LOAD ACCUMULATOR A
-        STA  // STORE ACCUMULATOR A
+        STA, // STORE ACCUMULATOR A
+        TAX,
+        INX,
+        ADC,
+        BRK
     };
 
     struct Code
